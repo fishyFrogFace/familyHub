@@ -31,6 +31,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -141,8 +142,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isUsernameValid(String username) {
-        //TODO: Replace this with your own logic
-        return username.contains("@");
+        String valid = getString(R.string.valid_username);
+        return Pattern.matches(valid, username)
+                && username.length() > 4
+                && username.length() < 12;
     }
 
     private boolean isPasswordValid(String password) {
